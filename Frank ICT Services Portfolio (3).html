@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chacha Francis Wambura (Frank) | ICT & Digital Services Specialist</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        techDark: '#0f172a',
+                        techCard: '#1e293b',
+                        techBorder: '#334155',
+                        brandBlue: '#2563eb',
+                        brandCyan: '#06b6d4',
+                        brandHover: '#1d4ed8'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'Courier New', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Custom scrollbar and ambient visual effects */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2563eb;
+        }
+        .glass-header {
+            background: rgba(15, 23, 42, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #60a5fa 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card-glow:hover {
+            box-shadow: 0 0 25px -5px rgba(37, 99, 235, 0.25);
+        }
+    </style>
+</head>
+<body class="bg-techDark text-slate-100 font-sans antialiased selection:bg-brandBlue selection:text-white min-h-screen flex flex-col">
+
+    <!-- Toast Notification Popup -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-techCard border border-brandCyan text-white px-5 py-3 rounded-xl shadow-2xl flex items-center gap-3">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span id="toast-message" class="text-sm font-medium">Notification message</span>
+    </div>
+
+    <!-- ==================== STICKY NAVIGATION BAR ==================== -->
+    <header class="sticky top-0 z-40 glass-header border-b border-techBorder/60 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20">
+                <!-- Brand Logo & Name -->
+                <a href="#hero" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brandBlue to-brandCyan flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-brandBlue/30 group-hover:scale-105 transition-transform">
+                        F
+                    </div>
+                    <div>
+                        <span class="text-xl font-extrabold tracking-tight text-white group-hover:text-cyan-400 transition-colors">Frank ICT</span>
+                        <span class="block text-[10px] text-slate-400 font-mono tracking-widest uppercase">Tech & Digital Solutions</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#services" class="text-sm font-medium text-slate-300 hover:text-cyan-400 transition-colors">Services</a>
+                    <a href="#projects" class="text-sm font-medium text-slate-300 hover:text-cyan-400 transition-colors">Previous Work</a>
+                    <a href="#skills" class="text-sm font-medium text-slate-300 hover:text-cyan-400 transition-colors">Skills</a>
+                    <a href="#why-me" class="text-sm font-medium text-slate-300 hover:text-cyan-400 transition-colors">Why Hire Frank</a>
+                    <a href="#contact" class="px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-brandBlue to-blue-600 rounded-xl hover:shadow-lg hover:shadow-brandBlue/30 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200">
+                        Get In Touch
+                    </a>
+                </nav>
+
+                <!-- Mobile Hamburger Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="menu-toggle" type="button" aria-label="Toggle navigation menu" class="p-2.5 rounded-lg text-slate-300 hover:text-white hover:bg-techCard focus:outline-none focus:ring-2 focus:ring-brandCyan transition-colors">
+                        <svg id="menu-open-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                        <svg id="menu-close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden border-b border-techBorder bg-techDark/95 backdrop-blur-xl px-4 pt-3 pb-6 space-y-3">
+            <a href="#services" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-medium text-slate-200 hover:bg-techCard hover:text-cyan-400">Services</a>
+            <a href="#projects" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-medium text-slate-200 hover:bg-techCard hover:text-cyan-400">Previous Work</a>
+            <a href="#skills" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-medium text-slate-200 hover:bg-techCard hover:text-cyan-400">Skills & Tools</a>
+            <a href="#why-me" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-medium text-slate-200 hover:bg-techCard hover:text-cyan-400">Why Hire Frank</a>
+            <a href="#contact" class="mobile-link block text-center px-4 py-3 text-base font-semibold text-white bg-brandBlue rounded-xl hover:bg-blue-600 transition-colors shadow-md">
+                Request a Service
+            </a>
+        </div>
+    </header>
+
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section id="hero" class="relative py-16 sm:py-24 lg:py-32 overflow-hidden border-b border-techBorder/40">
+        <!-- Background Ambient Glow -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-brandBlue/15 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute top-1/3 right-10 w-[300px] h-[300px] bg-brandCyan/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Column: Copy & CTAs -->
+                <div class="lg:col-span-7 text-left space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-techCard border border-brandCyan/30 text-cyan-400 text-xs sm:text-sm font-medium">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        Available for On-Site & Remote ICT Support
+                    </div>
+                    
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                        Reliable ICT Support, Networking & <span class="gradient-text">Custom Software</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed">
+                        Hi, I'm <strong class="text-white font-semibold">Chacha Francis Wambura (Frank)</strong>. I specialize in seamless Windows OS & Office deployments, local Wi-Fi router configurations, relational MySQL databases, robust C/C++ applications, and eye-catching digital graphic design.
+                    </p>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+                        <a href="#contact" class="inline-flex items-center justify-center px-7 py-3.5 text-base font-semibold text-white bg-gradient-to-r from-brandBlue to-blue-600 rounded-xl hover:shadow-xl hover:shadow-brandBlue/30 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200">
+                            Request a Service
+                            <svg class="w-5 h-5 ml-2 -mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </a>
+                        <a href="https://wa.me/254790022914?text=Hello%20Frank,%20I%20visited%20your%20portfolio%20and%20would%20like%20to%20inquire%20about%20your%20ICT%20services." target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-7 py-3.5 text-base font-semibold text-emerald-400 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 rounded-xl hover:text-emerald-300 transition-all duration-200">
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                            Direct WhatsApp
+                        </a>
+                    </div>
+
+                    <!-- Quick Metrics / Key Highlights -->
+                    <div class="pt-8 grid grid-cols-3 gap-4 border-t border-techBorder/60">
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-bold text-white font-mono">100%</div>
+                            <div class="text-xs text-slate-400 mt-1">System Reliability</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-bold text-cyan-400 font-mono">Diploma</div>
+                            <div class="text-xs text-slate-400 mt-1">ICT Qualified</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-bold text-white font-mono">Migori, KE</div>
+                            <div class="text-xs text-slate-400 mt-1">Ntimaru / Remote</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Interactive Terminal Preview Box -->
+                <div class="lg:col-span-5">
+                    <div class="bg-techCard border border-techBorder rounded-2xl overflow-hidden shadow-2xl shadow-black/50">
+                        <!-- Terminal Header -->
+                        <div class="px-4 py-3 bg-slate-900 border-b border-techBorder flex items-center justify-between">
+                            <div class="flex items-center space-x-2">
+                                <span class="w-3 h-3 rounded-full bg-rose-500 inline-block"></span>
+                                <span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span>
+                                <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>
+                            </div>
+                            <span class="text-xs font-mono text-slate-400">frank@tech-terminal:~</span>
+                            <span class="text-xs text-slate-500 font-mono">v1.2</span>
+                        </div>
+
+                        <!-- Terminal Body -->
+                        <div class="p-5 font-mono text-xs sm:text-sm space-y-3 bg-slate-950/90 text-slate-300 min-h-[320px] flex flex-col justify-between">
+                            <div class="space-y-2">
+                                <p class="text-emerald-400"><span class="text-slate-500">$</span> init_specialist_profile --user "Chacha Francis Wambura"</p>
+                                <p class="text-slate-400">[OK] Profile Loaded: OS, Wi-Fi, C++, MySQL, Graphic Design...</p>
+                                
+                                <div class="mt-4 p-3 bg-techCard/80 rounded-lg border border-techBorder/50 space-y-1">
+                                    <p class="text-cyan-400 font-semibold">&gt; Qualifications & Contact:</p>
+                                    <p class="text-white font-medium">&bull; Diploma in ICT — Kendege Technical Training College</p>
+                                    <p class="text-slate-300">&bull; Phone/WhatsApp: +254 790 022 914</p>
+                                    <p class="text-slate-300">&bull; Email: chachaf541@gmail.com</p>
+                                    <p class="text-slate-300">&bull; Location: Ntimaru, Migori County, Kenya</p>
+                                    <p class="text-slate-300">&bull; Windows 10/11 & MS Office Deployments</p>
+                                    <p class="text-slate-300">&bull; Router Configuration & Guest Wi-Fi</p>
+                                    <p class="text-slate-300">&bull; MySQL Database Design & Relational Queries</p>
+                                    <p class="text-slate-300">&bull; C/C++ Console Logic & Data Processing</p>
+                                </div>
+                            </div>
+
+                            <div class="pt-3 border-t border-slate-800 flex justify-between items-center text-slate-400 text-xs">
+                                <span>Status: <strong class="text-emerald-400 font-normal">Ready for Client Assignment</strong></span>
+                                <span class="animate-pulse text-cyan-400">_</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ==================== SERVICES SECTION ==================== -->
+    <section id="services" class="py-16 sm:py-24 bg-techDark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                <h2 class="text-xs font-mono font-semibold tracking-widest text-cyan-400 uppercase">Services & Expertise</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-white">What I Do For You</p>
+                <p class="text-slate-400 text-sm sm:text-base">Comprehensive technical services tailored for individual users, small businesses, and institutions.</p>
+            </div>
+
+            <!-- Services Grid (2x2 on Desktop) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <!-- Service 1: OS & Software Installation -->
+                <div class="bg-techCard border border-techBorder rounded-2xl p-6 sm:p-8 hover:border-brandBlue/60 transition-all duration-300 card-glow flex flex-col justify-between group">
+                    <div>
+                        <div class="w-14 h-14 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">OS & Software Installation</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                            Clean operating system installations, system recovery, essential driver updates, software provisioning, and full Microsoft Office suite setups for peak performance.
+                        </p>
+                        <ul class="space-y-2 text-xs sm:text-sm text-slate-400 mb-6 font-mono">
+                            <li class="flex items-center gap-2"><span class="text-cyan-400">✓</span> Windows 10/11 Clean Installs & Upgrades</li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400">✓</span> MS Office Suite (Word, Access, Publisher)</li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400">✓</span> Driver Fixes & Performance Optimization</li>
+                        </ul>
+                    </div>
+                    <button onclick="selectServiceForInquiry('OS & Software Installation')" class="w-full text-center py-2.5 px-4 rounded-xl text-sm font-semibold text-cyan-400 bg-techDark hover:bg-brandBlue hover:text-white border border-techBorder transition-all">
+                        Inquire About This Service &rarr;
+                    </button>
+                </div>
+
+                <!-- Service 2: Networking & Wi-Fi Management -->
+                <div class="bg-techCard border border-techBorder rounded-2xl p-6 sm:p-8 hover:border-brandBlue/60 transition-all duration-300 card-glow flex flex-col justify-between group">
+                    <div>
+                        <div class="w-14 h-14 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-cyan-500 group-hover:text-white transition-all">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071a10 10 0 0114.142 0M2.828 9.9a15 15 0 0121.214 0"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">Networking & Wi-Fi Management</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                            Reliable local network design, router administration, secure guest Wi-Fi creation, access control, bandwidth management, and troubleshooting connection bottlenecks.
+                        </p>
+                        <ul class="space-y-2 text-xs sm:text-sm text-slate-400 mb-6 font-mono">
+                            <li class="flex items-center gap-2"><span class="text-cyan-400">✓</span> Router & Access Point Configuration</li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400">✓</span> Isolated Guest Wi-Fi & Password Policy</li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400">✓</span> Network Security & Bandwidth Optimization</li>
+                        </ul>
+                    </div>
+                    <button onclick="selectServiceForInquiry('Networking & Wi-Fi Management')" class="w-full text-center py-2.5 px-4 rounded-xl text-sm font-semibold text-cyan-400 bg-techDark hover:bg-brandBlue hover:text-white border border-techBorder transition-all">
+                        Inquire About This Service &rarr;
+                    </button>
+                </div>
+
+                <!-- Service 3: Database & Custom Programming -->
+                <div class="bg-techCard border border-techBorder rounded-2xl p-6 sm:p-8 hover:border-brandBlue/60 transition-all duration-300 card-glow flex flex-col justify-between group">
+                    <div>
+                        <div class="w-14 h-14 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-indigo-600 group-hover:text-white transition-all">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">Database & Custom Programming</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                            Relational database architecture, normalized SQL tables, custom data scripts, and efficient C/C++ desktop software or logic algorithms for administrative tasks.
+                        </p>
+                        <ul class="space-y-2 text-xs sm:text-sm text-slate-400 mb-6 font-mono">
+                            <li class="flex items-center gap-2"><span class="text-cyan-400">✓</span> MySQL Schema Design & JOIN Queries</li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400">✓</span> C/C++ Console Apps & Data Structures</li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400">✓</span> WAMP Local Server & Database Setup</li>
+                        </ul>
+                    </div>
+                    <button onclick="selectServiceForInquiry('Database & Custom Programming')" class="w-full text-center py-2.5 px-4 rounded-xl text-sm font-semibold text-cyan-400 bg-techDark hover:bg-brandBlue hover:text-white border border-techBorder transition-all">
+                        Inquire About This Service &rarr;
+                    </button>
+                </div>
+
+                <!-- Service 4: Digital Support & Graphic Design -->
+                <div class="bg-techCard border border-techBorder rounded-2xl p-6 sm:p-8 hover:border-brandBlue/60 transition-all duration-300 card-glow flex flex-col justify-between group">
+                    <div>
+                        <div class="w-14 h-14 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-emerald-600 group-hover:text-white transition-all">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">Digital Support & Graphic Design</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                            Clean promotional materials, business payment display posters (M-Pesa/Bank notices), document formatting, online portal assistance, and account configurations.
+                        </p>
+                        <ul class="space-y-2 text-xs sm:text-sm text-slate-400 mb-6 font-mono">
+                            <li class="flex items-center gap-2"><span class="text-cyan-400">✓</span> Business Payment & Info Posters</li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400">✓</span> Professional Document Design & Publishing</li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400">✓</span> Online Account & Portal Registrations</li>
+                        </ul>
+                    </div>
+                    <button onclick="selectServiceForInquiry('Digital Support & Graphic Design')" class="w-full text-center py-2.5 px-4 rounded-xl text-sm font-semibold text-cyan-400 bg-techDark hover:bg-brandBlue hover:text-white border border-techBorder transition-all">
+                        Inquire About This Service &rarr;
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ==================== FEATURED PROJECTS / PROOF OF WORK ==================== -->
+    <section id="projects" class="py-16 sm:py-24 bg-slate-950/60 border-t border-techBorder/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+                <h2 class="text-xs font-mono font-semibold tracking-widest text-cyan-400 uppercase">Proof of Work & Case Studies</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-white">Previous Work & Technical Projects</p>
+                <p class="text-slate-400 text-sm sm:text-base">Explore real technical solutions delivered across operating systems, Wi-Fi networking, custom C++/MySQL logic, and digital administration.</p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-12">
+                <button onclick="filterProjects('all')" id="filter-btn-all" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-semibold transition-all bg-brandBlue text-white shadow-lg shadow-brandBlue/20">
+                    All Projects (6)
+                </button>
+                <button onclick="filterProjects('it-network')" id="filter-btn-it-network" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-semibold transition-all bg-techCard text-slate-300 hover:text-white hover:bg-techBorder border border-techBorder">
+                    IT & Networking
+                </button>
+                <button onclick="filterProjects('software-db')" id="filter-btn-software-db" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-semibold transition-all bg-techCard text-slate-300 hover:text-white hover:bg-techBorder border border-techBorder">
+                    Software & DB
+                </button>
+                <button onclick="filterProjects('digital-graphics')" id="filter-btn-digital-graphics" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-semibold transition-all bg-techCard text-slate-300 hover:text-white hover:bg-techBorder border border-techBorder">
+                    Graphics & Digital
+                </button>
+            </div>
+
+            <!-- Projects Grid (6 Cards) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Project 1: Windows & Office Client Deployments (IT & Networking) -->
+                <div class="project-card project-it-network bg-techCard border border-techBorder rounded-2xl overflow-hidden flex flex-col justify-between group hover:border-brandCyan/50 transition-all duration-300">
+                    <div>
+                        <!-- Screenshot / Visual Slot -->
+                        <div class="relative bg-slate-900 h-48 border-b border-techBorder flex items-center justify-center overflow-hidden">
+                            <!-- 
+                                EASY IMAGE SWAP INSTRUCTION:
+                                Replace the placeholder div below with your actual photo:
+                                <img src="images/win11-office-setup.jpg" alt="Windows 11 Setup" class="w-full h-full object-cover">
+                            -->
+                            <div class="p-4 text-center space-y-2">
+                                <div class="w-12 h-12 mx-auto rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                </div>
+                                <span class="block text-xs font-mono text-cyan-400">Windows 11 & Office 2021</span>
+                                <span class="block text-[11px] text-slate-400 font-mono">[ Screenshot Slot: images/project1.jpg ]</span>
+                            </div>
+                        </div>
+
+                        <div class="p-6 space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-blue-500/10 text-blue-400 border border-blue-500/20">IT & OS Deployment</span>
+                                <span class="text-[11px] font-mono text-slate-400">Client Laptops</span>
+                            </div>
+
+                            <h3 class="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors">Windows 10/11 & MS Office Provisioning</h3>
+
+                            <div class="space-y-2 text-xs text-slate-300">
+                                <p><strong class="text-rose-400">Problem:</strong> Slow boot times, corrupted drivers, unactivated office tools.</p>
+                                <p><strong class="text-emerald-400">Solution:</strong> Clean OS installation, full driver suite, MS Office setup & startup optimization.</p>
+                                <p><strong class="text-cyan-400">Outcome:</strong> Fast 12-second boot time, zero bloatware, 100% stable productivity.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="px-6 py-4 bg-slate-900/80 border-t border-techBorder flex items-center justify-between">
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-techDark text-slate-300">Windows 11</span>
+                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-techDark text-slate-300">MS Office</span>
+                        </div>
+                        <button onclick="openCaseStudyModal(0)" class="text-xs font-semibold text-cyan-400 hover:text-white transition-colors">
+                            View Case Study &rarr;
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 2: Router Security & Guest Wi-Fi Isolation (IT & Networking) -->
+                <div class="project-card project-it-network bg-techCard border border-techBorder rounded-2xl overflow-hidden flex flex-col justify-between group hover:border-brandCyan/50 transition-all duration-300">
+                    <div>
+                        <!-- Screenshot / Visual Slot -->
+                        <div class="relative bg-slate-900 h-48 border-b border-techBorder flex items-center justify-center overflow-hidden">
+                            <!-- 
+                                EASY IMAGE SWAP INSTRUCTION:
+                                Replace with your router setup screenshot:
+                                <img src="images/router-guest-wifi.jpg" alt="Wi-Fi Router Setup" class="w-full h-full object-cover">
+                            -->
+                            <div class="p-4 text-center space-y-2">
+                                <div class="w-12 h-12 mx-auto rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071a10 10 0 0114.142 0M2.828 9.9a15 15 0 0121.214 0"></path></svg>
+                                </div>
+                                <span class="block text-xs font-mono text-cyan-400">Router Admin & SSID Isolation</span>
+                                <span class="block text-[11px] text-slate-400 font-mono">[ Screenshot Slot: images/project2.jpg ]</span>
+                            </div>
+                        </div>
+
+                        <div class="p-6 space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">Networking</span>
+                                <span class="text-[11px] font-mono text-slate-400">Small Business / Home</span>
+                            </div>
+
+                            <h3 class="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors">Isolated Guest Wi-Fi & Network Security</h3>
+
+                            <div class="space-y-2 text-xs text-slate-300">
+                                <p><strong class="text-rose-400">Problem:</strong> Shared Wi-Fi password leaked to neighbors, overloading internet speed.</p>
+                                <p><strong class="text-emerald-400">Solution:</strong> Dual SSID router setup, VLAN guest isolation, MAC filtering & password policy.</p>
+                                <p><strong class="text-cyan-400">Outcome:</strong> Protected internal business network, smooth bandwidth for visitors.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="px-6 py-4 bg-slate-900/80 border-t border-techBorder flex items-center justify-between">
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-techDark text-slate-300">Router Admin</span>
+                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-techDark text-slate-300">DHCP / MAC</span>
+                        </div>
+                        <button onclick="openCaseStudyModal(1)" class="text-xs font-semibold text-cyan-400 hover:text-white transition-colors">
+                            View Case Study &rarr;
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 3: C++ Console Banking & Record App (Software & DB) -->
+                <div class="project-card project-software-db bg-techCard border border-techBorder rounded-2xl overflow-hidden flex flex-col justify-between group hover:border-brandCyan/50 transition-all duration-300">
+                    <div>
+                        <!-- Screenshot / Visual Slot -->
+                        <div class="relative bg-slate-900 h-48 border-b border-techBorder flex items-center justify-center overflow-hidden">
+                            <!-- 
+                                EASY IMAGE SWAP INSTRUCTION:
+                                Replace with your C++ terminal execution screenshot:
+                                <img src="images/cpp-banking-app.jpg" alt="C++ Banking Application" class="w-full h-full object-cover">
+                            -->
+                            <div class="p-4 text-center space-y-2">
+                                <div class="w-12 h-12 mx-auto rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                                </div>
+                                <span class="block text-xs font-mono text-cyan-400">C++ Data Processing App</span>
+                                <span class="block text-[11px] text-slate-400 font-mono">[ Screenshot Slot: images/project3.jpg ]</span>
+                            </div>
+                        </div>
+
+                        <div class="p-6 space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">Software Application</span>
+                                <span class="text-[11px] font-mono text-slate-400">C / C++ Logic</span>
+                            </div>
+
+                            <h3 class="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors">C++ Console Banking & Management Systems</h3>
+
+                            <div class="space-y-2 text-xs text-slate-300">
+                                <p><strong class="text-rose-400">Problem:</strong> Need for fast, lightweight offline software to calculate balances & records.</p>
+                                <p><strong class="text-emerald-400">Solution:</strong> Designed object-oriented C++ software with file storage, deposit/withdraw logic & CLI menus.</p>
+                                <p><strong class="text-cyan-400">Outcome:</strong> Instant computation, zero external dependencies, file-backed data.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="px-6 py-4 bg-slate-900/80 border-t border-techBorder flex items-center justify-between">
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-techDark text-slate-300">C++ / OOP</span>
+                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-techDark text-slate-300">File Storage</span>
+                        </div>
+                        <button onclick="openCaseStudyModal(2)" class="text-xs font-semibold text-cyan-400 hover:text-white transition-colors">
+                            View Case Study &rarr;
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 4: Relational MySQL Bookstore Database (Software & DB) -->
+                <div class="project-card project-software-db bg-techCard border border-techBorder rounded-2xl overflow-hidden flex flex-col justify-between group hover:border-brandCyan/50 transition-all duration-300">
+                    <div>
+                        <!-- Screenshot / Visual Slot -->
+                        <div class="relative bg-slate-900 h-48 border-b border-techBorder flex items-center justify-center overflow-hidden">
+                            <!-- 
+                                EASY IMAGE SWAP INSTRUCTION:
+                                Replace with your MySQL Workbench / ER Diagram screenshot:
+                                <img src="images/mysql-bookstore-schema.jpg" alt="MySQL Schema" class="w-full h-full object-cover">
+                            -->
+                            <div class="p-4 text-center space-y-2">
+                                <div class="w-12 h-12 mx-auto rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg>
+                                </div>
+                                <span class="block text-xs font-mono text-cyan-400">MySQL Relational Database</span>
+                                <span class="block text-[11px] text-slate-400 font-mono">[ Screenshot Slot: images/project4.jpg ]</span>
+                            </div>
+                        </div>
+
+                        <div class="p-6 space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-blue-500/10 text-blue-400 border border-blue-500/20">Database Engineering</span>
+                                <span class="text-[11px] font-mono text-slate-400">MySQL & WAMP</span>
+                            </div>
+
+                            <h3 class="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors">Relational Bookstore Management Schema</h3>
+
+                            <div class="space-y-2 text-xs text-slate-300">
+                                <p><strong class="text-rose-400">Problem:</strong> Duplicate inventory data, missing relationships between books & customer orders.</p>
+                                <p><strong class="text-emerald-400">Solution:</strong> Engineered normalized multi-table database schema with foreign key constraints & multi-table JOIN views.</p>
+                                <p><strong class="text-cyan-400">Outcome:</strong> Accurate stock management, fast search queries, complete data integrity.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="px-6 py-4 bg-slate-900/80 border-t border-techBorder flex items-center justify-between">
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-techDark text-slate-300">MySQL</span>
+                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-techDark text-slate-300">SQL Joins</span>
+                        </div>
+                        <button onclick="openCaseStudyModal(3)" class="text-xs font-semibold text-cyan-400 hover:text-white transition-colors">
+                            View Case Study &rarr;
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 5: Business Payment & M-Pesa Signage (Graphics & Digital) -->
+                <div class="project-card project-digital-graphics bg-techCard border border-techBorder rounded-2xl overflow-hidden flex flex-col justify-between group hover:border-brandCyan/50 transition-all duration-300">
+                    <div>
+                        <!-- Screenshot / Visual Slot -->
+                        <div class="relative bg-slate-900 h-48 border-b border-techBorder flex items-center justify-center overflow-hidden">
+                            <!-- 
+                                EASY IMAGE SWAP INSTRUCTION:
+                                Replace with your graphic design poster screenshot:
+                                <img src="images/business-payment-poster.jpg" alt="Payment Poster Design" class="w-full h-full object-cover">
+                            -->
+                            <div class="p-4 text-center space-y-2">
+                                <div class="w-12 h-12 mx-auto rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                </div>
+                                <span class="block text-xs font-mono text-cyan-400">Digital Poster & Branding</span>
+                                <span class="block text-[11px] text-slate-400 font-mono">[ Screenshot Slot: images/project5.jpg ]</span>
+                            </div>
+                        </div>
+
+                        <div class="p-6 space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Digital Graphics</span>
+                                <span class="text-[11px] font-mono text-slate-400">Local Business</span>
+                            </div>
+
+                            <h3 class="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors">Custom Business Signage & Payment Displays</h3>
+
+                            <div class="space-y-2 text-xs text-slate-300">
+                                <p><strong class="text-rose-400">Problem:</strong> Customers making payment errors due to small, unreadable Till/Account numbers.</p>
+                                <p><strong class="text-emerald-400">Solution:</strong> Designed clean, high-contrast digital posters for M-Pesa payment displays & service flyers.</p>
+                                <p><strong class="text-cyan-400">Outcome:</strong> Zero payment input errors, professional counter presentation.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="px-6 py-4 bg-slate-900/80 border-t border-techBorder flex items-center justify-between">
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-techDark text-slate-300">Graphic Design</span>
+                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-techDark text-slate-300">Print Ready</span>
+                        </div>
+                        <button onclick="openCaseStudyModal(4)" class="text-xs font-semibold text-cyan-400 hover:text-white transition-colors">
+                            View Case Study &rarr;
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 6: KRA iTax PIN & Online Portal Support (Graphics & Digital) -->
+                <div class="project-card project-digital-graphics bg-techCard border border-techBorder rounded-2xl overflow-hidden flex flex-col justify-between group hover:border-brandCyan/50 transition-all duration-300">
+                    <div>
+                        <!-- Screenshot / Visual Slot -->
+                        <div class="relative bg-slate-900 h-48 border-b border-techBorder flex items-center justify-center overflow-hidden">
+                            <!-- 
+                                EASY IMAGE SWAP INSTRUCTION:
+                                Replace with your online portal / certificate screenshot:
+                                <img src="images/kra-itax-support.jpg" alt="KRA Support" class="w-full h-full object-cover">
+                            -->
+                            <div class="p-4 text-center space-y-2">
+                                <div class="w-12 h-12 mx-auto rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                                </div>
+                                <span class="block text-xs font-mono text-cyan-400">Digital Portal Assistance</span>
+                                <span class="block text-[11px] text-slate-400 font-mono">[ Screenshot Slot: images/project6.jpg ]</span>
+                            </div>
+                        </div>
+
+                        <div class="p-6 space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-amber-500/10 text-amber-400 border border-amber-500/20">Digital Admin</span>
+                                <span class="text-[11px] font-mono text-slate-400">Online Portals</span>
+                            </div>
+
+                            <h3 class="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors">KRA iTax PIN Registration & Filing Support</h3>
+
+                            <div class="space-y-2 text-xs text-slate-300">
+                                <p><strong class="text-rose-400">Problem:</strong> Clients struggling with locked portal accounts, forgotten passwords & filing deadlines.</p>
+                                <p><strong class="text-emerald-400">Solution:</strong> Guided portal recovery, updated profile information, and completed Nil Returns filings.</p>
+                                <p><strong class="text-cyan-400">Outcome:</strong> Full compliance, downloadable PDF certificates, zero tax penalty risks.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="px-6 py-4 bg-slate-900/80 border-t border-techBorder flex items-center justify-between">
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-techDark text-slate-300">KRA Portal</span>
+                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-techDark text-slate-300">E-Citizen</span>
+                        </div>
+                        <button onclick="openCaseStudyModal(5)" class="text-xs font-semibold text-cyan-400 hover:text-white transition-colors">
+                            View Case Study &rarr;
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ==================== SKILLS & TOOLS SECTION ==================== -->
+    <section id="skills" class="py-16 sm:py-24 bg-techDark border-t border-techBorder/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                <h2 class="text-xs font-mono font-semibold tracking-widest text-cyan-400 uppercase">Technical Stack</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-white">Skills, Tools & Technologies</p>
+                <p class="text-slate-400 text-sm sm:text-base">Categorized breakdown of software, languages, and technical competencies.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <!-- Category 1: Operating Systems & Office -->
+                <div class="bg-techCard border border-techBorder rounded-2xl p-6 sm:p-8 space-y-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center font-bold">OS</div>
+                        <h3 class="text-lg font-bold text-white">OS & Office Productivity</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 rounded-lg bg-techDark border border-techBorder text-xs font-mono text-slate-200">Windows 10 / 11</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-techDark border border-techBorder text-xs font-mono text-slate-200">Microsoft Word</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-techDark border border-techBorder text-xs font-mono text-slate-200">Microsoft Access</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-techDark border border-techBorder text-xs font-mono text-slate-200">Microsoft Publisher</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-techDark border border-techBorder text-xs font-mono text-slate-200">System Backup & Recovery</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-techDark border border-techBorder text-xs font-mono text-slate-200">Driver Installation</span>
+                    </div>
+                </div>
+
+                <!-- Category 2: Networking & Hardware -->
+                <div class="bg-techCard border border-techBorder rounded-2xl p-6 sm:p-8 space-y-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center font-bold">NET</div>
+                        <h3 class="text-lg font-bold text-white">Networking & Hardware</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 rounded-lg bg-techDark border border-techBorder text-xs font-mono text-slate-200">Router Admin</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-techDark border border-techBorder text-xs font-mono text-slate-200">LAN / WLAN Setup</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-techDark border border-techBorder text-xs font-mono text-slate-200">DHCP & IP Config</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-techDark border border-techBorder text-xs font-mono text-slate-200">Guest Wi-Fi Security</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-techDark border border-techBorder text-xs font-mono text-slate-200">Bootable Media Setup</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-techDark border border-techBorder text-xs font-mono text-slate-200">Hardware Diagnostic</span>
+                    </div>
+                </div>
+
+                <!-- Category 3: Databases, Programming & Web -->
+                <div class="bg-techCard border border-techBorder rounded-2xl p-6 sm:p-8 space-y-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center font-bold">DEV</div>
+                        <h3 class="text-lg font-bold text-white">Databases & Programming</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 rounded-lg bg-techDark border border-techBorder text-xs font-mono text-slate-200">MySQL</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-techDark border border-techBorder text-xs font-mono text-slate-200">C Language</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-techDark border border-techBorder text-xs font-mono text-slate-200">C++</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-techDark border border-techBorder text-xs font-mono text-slate-200">WAMP Server</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-techDark border border-techBorder text-xs font-mono text-slate-200">HTML5 & CSS3</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-techDark border border-techBorder text-xs font-mono text-slate-200">SQL Workbench</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ==================== WHY HIRE FRANK ==================== -->
+    <section id="why-me" class="py-16 sm:py-24 bg-slate-950/80 border-t border-techBorder/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-6 space-y-6">
+                    <h2 class="text-xs font-mono font-semibold tracking-widest text-cyan-400 uppercase">Service Guarantee</h2>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">Why Choose Frank ICT For Your Technical Needs</h3>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                        I combine solid technical fundamentals with a prompt, problem-solving mindset. Whether you need a single laptop formatted or a custom database built, I focus on clean execution and lasting results.
+                    </p>
+
+                    <div class="space-y-4 pt-2">
+                        <div class="flex items-start gap-4">
+                            <div class="p-2.5 rounded-xl bg-brandBlue/10 text-cyan-400 shrink-0">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 01-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="text-base font-bold text-white">Education & Qualifications</h4>
+                                <p class="text-xs sm:text-sm text-slate-200 font-semibold">Diploma in Information Communication Technology (ICT)</p>
+                                <p class="text-xs text-slate-400">Kendege Technical Training College</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="p-2.5 rounded-xl bg-brandBlue/10 text-cyan-400 shrink-0">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="text-base font-bold text-white">Fast Turnaround & Direct Support</h4>
+                                <p class="text-xs sm:text-sm text-slate-400">Quick response times via WhatsApp or direct phone calls to get your systems running with zero downtime.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="p-2.5 rounded-xl bg-brandBlue/10 text-cyan-400 shrink-0">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="text-base font-bold text-white">Clear Communication & Privacy</h4>
+                                <p class="text-xs sm:text-sm text-slate-400">Clear explanations without unnecessary jargon, and strict confidentiality with all your business or personal data.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Feature Card -->
+                <div class="lg:col-span-6 bg-techCard border border-techBorder rounded-2xl p-6 sm:p-8 space-y-6">
+                    <h4 class="text-xl font-bold text-white border-b border-techBorder pb-4">Service Commitment</h4>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Every job—whether installing an OS on a single desktop, setting up Wi-Fi for an office, or writing a custom SQL script—is executed with thorough testing and proper post-install support.
+                    </p>
+                    
+                    <div class="space-y-3 bg-slate-950 p-5 rounded-xl border border-slate-800 font-mono text-xs text-slate-300">
+                        <p class="text-cyan-400">&gt; Direct Contact Information:</p>
+                        <p>&bull; Name: <span class="text-white">Chacha Francis Wambura (Frank)</span></p>
+                        <p>&bull; Phone / WhatsApp: <span class="text-white">+254 790 022 914</span></p>
+                        <p>&bull; Email: <span class="text-white">chachaf541@gmail.com</span></p>
+                        <p>&bull; Location: <span class="text-white">Ntimaru, Migori County, Kenya</span></p>
+                    </div>
+
+                    <div class="flex gap-3">
+                        <a href="tel:+254790022914" class="flex-1 py-3 text-center rounded-xl bg-brandBlue text-white font-semibold text-sm hover:bg-blue-600 transition-colors">
+                            Call Now: 0790 022 914
+                        </a>
+                        <button onclick="copyContactInfo()" class="px-4 py-3 rounded-xl bg-techDark text-slate-300 hover:text-white border border-techBorder text-sm font-semibold transition-colors">
+                            Copy Details
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ==================== INTERACTIVE CONTACT SECTION ==================== -->
+    <section id="contact" class="py-16 sm:py-24 bg-techDark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                <h2 class="text-xs font-mono font-semibold tracking-widest text-cyan-400 uppercase">Contact & Booking</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-white">Let's Work Together</p>
+                <p class="text-slate-400 text-sm sm:text-base">Fill out the form below to send an instant message via WhatsApp or email, or reach out directly.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+
+                <!-- Left Column: Quick Contact Cards -->
+                <div class="lg:col-span-5 space-y-6">
+                    
+                    <!-- WhatsApp Card -->
+                    <a href="https://wa.me/254790022914?text=Hello%20Frank,%20I%20would%20like%20to%20inquire%20about%20your%20ICT%20services." target="_blank" rel="noopener noreferrer" class="block bg-techCard border border-techBorder hover:border-emerald-500/60 p-6 rounded-2xl transition-all duration-300 group">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-white transition-all">
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                            </div>
+                            <div>
+                                <span class="text-xs font-mono text-emerald-400">Fast Response</span>
+                                <h4 class="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors">WhatsApp Chat</h4>
+                                <p class="text-xs text-slate-400 font-mono">+254 790 022 914</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Direct Call Card -->
+                    <a href="tel:+254790022914" class="block bg-techCard border border-techBorder hover:border-brandBlue/60 p-6 rounded-2xl transition-all duration-300 group">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            </div>
+                            <div>
+                                <span class="text-xs font-mono text-blue-400">Direct Call</span>
+                                <h4 class="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors">Phone Call</h4>
+                                <p class="text-xs text-slate-400 font-mono">0790 022 914</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Email Card -->
+                    <a href="mailto:chachaf541@gmail.com" class="block bg-techCard border border-techBorder hover:border-cyan-500/60 p-6 rounded-2xl transition-all duration-300 group">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center group-hover:scale-110 group-hover:bg-cyan-500 group-hover:text-white transition-all">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            </div>
+                            <div>
+                                <span class="text-xs font-mono text-cyan-400">Professional Mail</span>
+                                <h4 class="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors">Email Address</h4>
+                                <p class="text-xs text-slate-400 font-mono">chachaf541@gmail.com</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Location Card -->
+                    <div class="bg-techCard border border-techBorder p-6 rounded-2xl space-y-2">
+                        <div class="flex items-center gap-3 text-slate-300">
+                            <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <span class="text-sm font-semibold text-white">Location & Coverage</span>
+                        </div>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Based in <strong class="text-slate-200">Ntimaru, Migori County, Kenya</strong>. Available for on-site services locally and remote digital support nationwide.
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- Right Column: Interactive Service Request Form -->
+                <div class="lg:col-span-7 bg-techCard border border-techBorder rounded-2xl p-6 sm:p-8 shadow-xl">
+                    <h3 class="text-2xl font-bold text-white mb-2">Request Service / Inquiry</h3>
+                    <p class="text-slate-400 text-sm mb-4">Select your service, add a note, and choose whether to submit directly or dispatch via WhatsApp/Email.</p>
+
+                    <!-- Working Hours & Offline Notice -->
+                    <div class="mb-6 p-3.5 bg-slate-950/80 border border-brandCyan/30 rounded-xl text-xs space-y-1">
+                        <div class="flex items-center justify-between text-cyan-400 font-mono font-medium">
+                            <span>🕒 Working Hours: Mon–Sat, 8:00 AM – 8:00 PM EAT</span>
+                            <span class="text-emerald-400 text-[11px] font-semibold">● 24/7 Form Active</span>
+                        </div>
+                        <p class="text-slate-400 text-[11px]">Inquiries sent outside support hours or during class are queued and answered first thing the next morning.</p>
+                    </div>
+
+                    <!-- Direct Submission On-Screen Confirmation Banner -->
+                    <div id="form-confirmation" class="hidden mb-6 p-4 bg-emerald-500/10 border border-emerald-500/30 rounded-xl space-y-2">
+                        <div class="flex items-center gap-2 text-emerald-400 font-semibold text-sm">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span>Request Received & Queued!</span>
+                        </div>
+                        <p id="submitted-summary" class="text-xs text-slate-300 leading-relaxed"></p>
+                    </div>
+
+                    <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" class="space-y-5" onsubmit="handleFormSubmit(event)">
+                        <!-- Web3Forms Access Key -->
+                        <input type="hidden" name="access_key" value="c1ac29a7-331f-4bcd-aa5f-6eabb4a67e94">
+                        <input type="hidden" name="subject" value="New ICT Service Request - Frank ICT Website">
+                        <input type="hidden" name="from_name" value="Frank ICT Portfolio Visitor">
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label for="client-name" class="block text-xs font-mono text-slate-300 mb-2">Your Full Name *</label>
+                                <input type="text" id="client-name" name="name" required placeholder="e.g. John Mwangi" class="w-full bg-techDark border border-techBorder rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brandCyan transition-colors">
+                            </div>
+                            <div>
+                                <label for="client-phone" class="block text-xs font-mono text-slate-300 mb-2">Your Phone / WhatsApp *</label>
+                                <input type="tel" id="client-phone" name="phone" required placeholder="e.g. 0712345678" class="w-full bg-techDark border border-techBorder rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brandCyan transition-colors">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="service-select" class="block text-xs font-mono text-slate-300 mb-2">Service Required *</label>
+                            <select id="service-select" name="service" required class="w-full bg-techDark border border-techBorder rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brandCyan transition-colors">
+                                <option value="" disabled selected>Select a service category...</option>
+                                <option value="OS & Software Installation">OS & Software Installation (Windows / Office)</option>
+                                <option value="Networking & Wi-Fi Management">Networking & Wi-Fi Management (Router Config)</option>
+                                <option value="Database & Custom Programming">Database & Custom Programming (MySQL / C++)</option>
+                                <option value="Digital Support & Graphic Design">Digital Support & Graphic Design (Posters / Admin)</option>
+                                <option value="General ICT Consultation">General ICT Technical Support / Consultation</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="client-message" class="block text-xs font-mono text-slate-300 mb-2">Project or Problem Description *</label>
+                            <textarea id="client-message" name="message" rows="4" required placeholder="Briefly describe what you need (e.g., 'Need Windows 11 installed on 3 office laptops and router configured')..." class="w-full bg-techDark border border-techBorder rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brandCyan transition-colors"></textarea>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="space-y-3 pt-2">
+                            <button type="submit" id="direct-submit-btn" class="w-full py-3.5 px-5 text-sm font-semibold text-white bg-gradient-to-r from-brandBlue to-blue-600 hover:from-blue-600 hover:to-blue-700 rounded-xl transition-all duration-200 shadow-lg shadow-brandBlue/20 flex items-center justify-center gap-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                                Submit Request Directly (Offline Inbox Capture)
+                            </button>
+                            <div class="flex flex-col sm:flex-row items-center gap-3">
+                                <button type="button" onclick="sendViaWhatsApp()" class="w-full sm:w-1/2 flex items-center justify-center gap-2 py-3 px-4 text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-500 rounded-xl transition-all duration-200 shadow-md">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                                    Send via WhatsApp
+                                </button>
+                                <button type="button" onclick="sendViaEmail()" class="w-full sm:w-1/2 flex items-center justify-center gap-2 py-3 px-4 text-xs font-semibold text-white bg-techDark border border-techBorder hover:bg-slate-800 rounded-xl transition-all duration-200 shadow-md">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                    Send via Email Client
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="bg-slate-950 border-t border-techBorder/60 py-12 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-brandBlue flex items-center justify-center text-white font-bold text-base">F</div>
+                    <div>
+                        <span class="text-base font-bold text-white">Chacha Francis Wambura</span>
+                        <span class="block text-xs text-slate-400 font-mono">ICT & Digital Services Specialist | Ntimaru, Migori</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-6 text-xs text-slate-400 font-mono">
+                    <a href="#services" class="hover:text-cyan-400 transition-colors">Services</a>
+                    <a href="#projects" class="hover:text-cyan-400 transition-colors">Projects</a>
+                    <a href="#skills" class="hover:text-cyan-400 transition-colors">Skills</a>
+                    <a href="https://wa.me/254790022914" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 transition-colors">WhatsApp</a>
+                </div>
+
+                <div class="text-xs text-slate-400 text-center md:text-right space-y-1">
+                    <p>&copy; <span id="current-year"></span> Frank ICT. All Rights Reserved.</p>
+                    <p class="font-mono text-[11px] text-slate-400">Socials: <span class="text-cyan-400">@frank541</span></p>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ==================== MODAL DIALOG FOR PROJECT DETAILS ==================== -->
+    <div id="project-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+        <div class="bg-techCard border border-techBorder rounded-2xl max-w-lg w-full p-6 sm:p-8 space-y-5 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal()" aria-label="Close modal window" class="absolute top-4 right-4 text-slate-400 hover:text-white p-2 rounded-lg hover:bg-slate-800">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+
+            <span id="modal-category" class="inline-block px-3 py-1 rounded-full text-xs font-mono bg-brandBlue/10 text-cyan-400 border border-cyan-500/20">Category</span>
+            
+            <h4 id="modal-title" class="text-2xl font-bold text-white leading-snug">Project Title</h4>
+
+            <div id="modal-body" class="space-y-3 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                <!-- Dynamic Content Injected via JS -->
+            </div>
+
+            <div class="pt-4 border-t border-techBorder flex flex-col sm:flex-row items-center justify-between gap-3">
+                <button id="modal-request-btn" onclick="" class="w-full sm:w-auto px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs sm:text-sm rounded-xl transition-colors flex items-center justify-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    Request Similar Service
+                </button>
+                <button onclick="closeModal()" class="w-full sm:w-auto px-5 py-2.5 bg-techDark hover:bg-slate-800 text-slate-300 font-semibold text-xs sm:text-sm rounded-xl border border-techBorder transition-colors">
+                    Close Details
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ==================== JAVASCRIPT INTERACTIVE LOGIC ==================== -->
+    <script>
+        // Set dynamic year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Target Phone & Email variables
+        const FRANK_PHONE_RAW = '254790022914';
+        const FRANK_PHONE_DISPLAY = '+254 790 022 914';
+        const FRANK_EMAIL = 'chachaf541@gmail.com';
+
+        // Case Studies Data Array for Dynamic Modal
+        const caseStudiesData = [
+            {
+                title: "Windows 10/11 & MS Office Provisioning",
+                category: "IT & OS Deployment",
+                serviceCategory: "OS & Software Installation",
+                problem: "Multiple client laptops had corrupted drivers, unactivated office tools, and slow 2-minute boot times.",
+                solution: "Performed clean operating system installations, flashed official vendor drivers, deployed the full MS Office suite, and optimized system startup services.",
+                outcome: "Reduced boot time to 12 seconds, restored system stability, and delivered client-ready work PCs.",
+                tools: ["Windows 11", "MS Office", "Driver Pack", "System Cleanup"]
+            },
+            {
+                title: "Isolated Guest Wi-Fi & Network Security",
+                category: "Networking & Router Admin",
+                serviceCategory: "Networking & Wi-Fi Management",
+                problem: "A local venue shared their main Wi-Fi password with guests, resulting in network congestion and security risks to internal computers.",
+                solution: "Configured dual SSIDs on Huawei router infrastructure, established an isolated guest VLAN with device caps, MAC filtering, and bandwidth limits.",
+                outcome: "Separated guest internet traffic completely from internal administrative devices while maintaining fast speeds.",
+                tools: ["Huawei Router Admin", "VLAN / Guest Wi-Fi", "DHCP", "MAC Filtering"]
+            },
+            {
+                title: "C++ Console Banking & Management Systems",
+                category: "Software Application",
+                serviceCategory: "Database & Custom Programming",
+                problem: "Requirement for lightweight, zero-dependency desktop tools to handle transactions and student record computing offline.",
+                solution: "Engineered object-oriented C++ console programs featuring file I/O operations for data persistence, input verification, and menu-driven interfaces.",
+                outcome: "Instant execution, local text-file database storage, and complete offline reliability.",
+                tools: ["C++ / C", "OOP Principles", "File I/O", "CLI Interface"]
+            },
+            {
+                title: "Relational Bookstore Management Schema",
+                category: "Database Engineering",
+                serviceCategory: "Database & Custom Programming",
+                problem: "Unstructured inventory data causing record duplication and difficulty in tracking customer purchases.",
+                solution: "Engineered a normalized 3NF relational MySQL database (`bookstore_dbm`) with primary/foreign keys, relational integrity, and inner/outer JOIN queries.",
+                outcome: "Eliminated duplicate entries and enabled instant sales reporting.",
+                tools: ["MySQL", "WAMP Server", "SQL Workbench", "JOIN Queries"]
+            },
+            {
+                title: "Custom Business Signage & Payment Displays",
+                category: "Digital Graphic Design",
+                serviceCategory: "Digital Support & Graphic Design",
+                problem: "Local merchants experienced customer transaction errors due to hard-to-read M-Pesa Till & Bank account numbers.",
+                solution: "Designed high-contrast, professional printable vector display cards and digital marketing flyers for WhatsApp.",
+                outcome: "Eliminated transaction errors and enhanced shop counter branding.",
+                tools: ["Graphic Design", "Vector Artwork", "High-Res PDF", "Print Layout"]
+            },
+            {
+                title: "KRA iTax PIN Registration & Filing Support",
+                category: "Digital Admin Support",
+                serviceCategory: "Digital Support & Graphic Design",
+                problem: "Clients were locked out of their KRA iTax accounts and faced penalties for missing tax filing deadlines.",
+                solution: "Provided step-by-step assistance in portal password recovery, profile updates, and Nil Returns filing.",
+                outcome: "Resolved account access instantly and downloaded official compliance certificates.",
+                tools: ["KRA iTax Portal", "E-Citizen", "PDF Verification", "Digital Admin"]
+            }
+        ];
+
+        // Category Filter Logic
+        function filterProjects(category) {
+            const cards = document.querySelectorAll('.project-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            // Update button styles
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-brandBlue', 'text-white', 'shadow-lg', 'shadow-brandBlue/20');
+                btn.classList.add('bg-techCard', 'text-slate-300', 'border', 'border-techBorder');
+            });
+
+            const activeBtn = document.getElementById(`filter-btn-${category}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('bg-techCard', 'text-slate-300', 'border', 'border-techBorder');
+                activeBtn.classList.add('bg-brandBlue', 'text-white', 'shadow-lg', 'shadow-brandBlue/20');
+            }
+
+            // Show/Hide cards
+            cards.forEach(card => {
+                if (category === 'all' || card.classList.contains(`project-${category}`)) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+
+        // Open Case Study Modal
+        function openCaseStudyModal(index) {
+            const project = caseStudiesData[index];
+            if (!project) return;
+
+            document.getElementById('modal-title').textContent = project.title;
+            document.getElementById('modal-category').textContent = project.category;
+
+            const modalBody = document.getElementById('modal-body');
+            modalBody.innerHTML = `
+                <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 space-y-2">
+                    <p><strong class="text-rose-400">Problem Statement:</strong> ${project.problem}</p>
+                    <p><strong class="text-emerald-400">Technical Solution:</strong> ${project.solution}</p>
+                    <p><strong class="text-cyan-400">Key Outcome:</strong> ${project.outcome}</p>
+                </div>
+                <div>
+                    <span class="block text-xs font-mono text-slate-400 mb-1">Tools & Technologies Used:</span>
+                    <div class="flex flex-wrap gap-1.5">
+                        ${project.tools.map(tool => `<span class="px-2 py-0.5 rounded bg-techDark text-slate-200 font-mono text-[11px] border border-techBorder">${tool}</span>`).join('')}
+                    </div>
+                </div>
+            `;
+
+            const requestBtn = document.getElementById('modal-request-btn');
+            requestBtn.onclick = function() {
+                requestSimilarService(project.serviceCategory);
+            };
+
+            document.getElementById('project-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('project-modal').classList.add('hidden');
+        }
+
+        // Pre-select service & scroll to contact form
+        function requestSimilarService(serviceName) {
+            closeModal();
+            const selectElem = document.getElementById('service-select');
+            if (selectElem) {
+                selectElem.value = serviceName;
+            }
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+            showToast(`Selected "${serviceName}" in inquiry form.`);
+        }
+
+        // Mobile Menu Toggle
+        const menuToggleBtn = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuOpenIcon = document.getElementById('menu-open-icon');
+        const menuCloseIcon = document.getElementById('menu-close-icon');
+
+        menuToggleBtn.addEventListener('click', () => {
+            const isExpanded = mobileMenu.classList.toggle('hidden');
+            menuOpenIcon.classList.toggle('hidden', !isExpanded);
+            menuCloseIcon.classList.toggle('hidden', isExpanded);
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuOpenIcon.classList.remove('hidden');
+                menuCloseIcon.classList.add('hidden');
+            });
+        });
+
+        // Toast notification trigger
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toast-message');
+            toastMessage.textContent = message;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3500);
+        }
+
+        // Copy contact details
+        function copyContactInfo() {
+            const contactText = `Chacha Francis Wambura (Frank ICT)\nPhone/WhatsApp: ${FRANK_PHONE_DISPLAY}\nEmail: ${FRANK_EMAIL}\nLocation: Ntimaru, Migori County, Kenya`;
+            
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(contactText)
+                    .then(() => showToast('Contact details copied to clipboard!'))
+                    .catch(() => fallbackCopy(contactText));
+            } else {
+                fallbackCopy(contactText);
+            }
+        }
+
+        function fallbackCopy(text) {
+            const tempInput = document.createElement('textarea');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showToast('Contact details copied to clipboard!');
+        }
+
+        function selectServiceForInquiry(serviceName) {
+            requestSimilarService(serviceName);
+        }
+
+        // Form Handlers
+        function displaySubmissionConfirmation(name, service) {
+            const confirmationBox = document.getElementById('form-confirmation');
+            const submittedSummary = document.getElementById('submitted-summary');
+            if (confirmationBox && submittedSummary) {
+                submittedSummary.textContent = `Thank you, ${name}! Your request for "${service}" has been logged and sent directly to Frank's inbox. You will receive a response within support hours (Mon–Sat, 8:00 AM – 8:00 PM EAT).`;
+                confirmationBox.classList.remove('hidden');
+            }
+        }
+
+        async function handleFormSubmit(e) {
+            e.preventDefault();
+            const form = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('direct-submit-btn');
+            const name = document.getElementById('client-name').value.trim();
+            const service = document.getElementById('service-select').value;
+
+            if (!name || !service) {
+                showToast('Please fill out all required fields.');
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending request...';
+
+            try {
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: new FormData(form)
+                });
+                const data = await response.json();
+
+                if (data.success) {
+                    displaySubmissionConfirmation(name, service);
+                    showToast('Inquiry submitted directly to inbox!');
+                    form.reset();
+                } else {
+                    showToast(data.message || 'Submission error. Opening WhatsApp fallback...');
+                    sendViaWhatsApp();
+                }
+            } catch (err) {
+                showToast('Network error. Opening WhatsApp fallback...');
+                sendViaWhatsApp();
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Request Directly (Offline Inbox Capture)';
+            }
+        }
+
+        function sendViaWhatsApp() {
+            const name = document.getElementById('client-name').value.trim();
+            const phone = document.getElementById('client-phone').value.trim();
+            const service = document.getElementById('service-select').value;
+            const message = document.getElementById('client-message').value.trim();
+
+            if (!name || !phone || !service || !message) {
+                showToast('Please fill in all form fields first.');
+                return;
+            }
+
+            displaySubmissionConfirmation(name, service);
+
+            const text = `*New ICT Service Request*\n\n` +
+                         `*Client Name:* ${name}\n` +
+                         `*Client Contact:* ${phone}\n` +
+                         `*Requested Service:* ${service}\n\n` +
+                         `*Project Details:* ${message}`;
+
+            const encodedText = encodeURIComponent(text);
+            window.open(`https://wa.me/${FRANK_PHONE_RAW}?text=${encodedText}`, '_blank');
+        }
+
+        function sendViaEmail() {
+            const name = document.getElementById('client-name').value.trim();
+            const phone = document.getElementById('client-phone').value.trim();
+            const service = document.getElementById('service-select').value;
+            const message = document.getElementById('client-message').value.trim();
+
+            if (!name || !phone || !service || !message) {
+                showToast('Please fill in all form fields first.');
+                return;
+            }
+
+            displaySubmissionConfirmation(name, service);
+
+            const subject = encodeURIComponent(`Service Request: ${service} - ${name}`);
+            const body = encodeURIComponent(`Hi Frank,\n\nI would like to inquire about your ICT services.\n\nName: ${name}\nContact: ${phone}\nService Requested: ${service}\n\nDetails:\n${message}\n\nBest regards,\n${name}`);
+
+            window.location.href = `mailto:${FRANK_EMAIL}?subject=${subject}&body=${body}`;
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            sendViaWhatsApp();
+        }
+    </script>
+</body>
+</html>
